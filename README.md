@@ -14,6 +14,8 @@ perf_test --help
 
 ## Usage
 
+Set api token with env var `REPLICATE_API_TOKEN`
+
 * `--target`: should be the name of a replicate model or deployment. I.E: `meta/meta-llama-3-8b-instruct` or `replicate-internal/llama-2-13b-chat-int8-1xa100-80gb-triton:b127007ce910cd8e291f3a7da2405a7cc2562fa63ac2e8f21905b2e0b5edb10d`
 * `--target_type`: set to the type of model. Currently only `model`, `official-model`, or `deployemnt` but see [Adding New Model Types](#adding-new-model-types) for how to add more.
 * `--unit`: choose between rps or batch size mode
