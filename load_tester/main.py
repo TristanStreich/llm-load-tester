@@ -787,7 +787,13 @@ def cli_main(args: Optional[List[str]] = None):
         description="Benchmark script for Triton or Cog server."
     )
     parser.add_argument(
-        "--target", required=True, help="Target server for the benchmark."
+        "--target", required=True, help="Target model/deployment for the benchmark"
+    )
+    parser.add_argument(
+        "--target_type",
+        type=str,
+        required=True,
+        help="If target is a Replicate model, should be one of 'model', 'deployment', or 'official-model'",
     )
     parser.add_argument(
         "--rate",
@@ -805,24 +811,12 @@ def cli_main(args: Optional[List[str]] = None):
         "--unit",
         type=str,
         choices=["rps", "batch"],
-        required=True,
+        required=False,
+        default="batch",
         help="Mode of operation: rps for requests per second, batch for concurrent requests.",
     )
     parser.add_argument(
         "--duration", type=int, required=True, help="Duration of test in seconds."
-    )
-    parser.add_argument(
-        "--n_input_tokens", type=int, required=False, help="Number of input tokens."
-    )
-    parser.add_argument(
-        "--n_output_tokens", type=int, required=False, help="Number of output tokens."
-    )
-    parser.add_argument(
-        "--target_type",
-        type=str,
-        required=False,
-        default=None,
-        help="If target is a Replicate model, should be one of 'model', 'deployment', or 'official-model'",
     )
     original_args = parser.parse_args(args=args)
 
